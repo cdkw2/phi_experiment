@@ -1,5 +1,6 @@
 # Random Walk Simulation
 (Special thanks to codocoder for telling me about this on discord!)
+
 This project simulates a special type of random walk to demonstrate the relationship between the golden ratio and the probability of returning to the origin in certain random walk scenarios.
 
 ## Overview
