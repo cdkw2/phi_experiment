@@ -3,8 +3,9 @@
 #include <time.h>
 #include <math.h>
 
-#define NTRIALS 10000
+#define NTRIALS 100000
 #define STEPLIMIT 100
+#define POSITION_LIMIT 20
 
 int main() {
     srand(time(NULL));
@@ -26,6 +27,9 @@ int main() {
 
                 if (position == 0) {
                     nhalted++;
+                    break;
+                }
+                if (position >= POSITION_LIMIT) {
                     break;
                 }
                 steps++;

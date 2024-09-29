@@ -1,5 +1,6 @@
-# Random Walk Simulation
 
+# Random Walk Simulation
+## (Special thanks to codocoder for telling me about this on discord!)
 This project simulates a special type of random walk to demonstrate the relationship between the golden ratio and the probability of returning to the origin in certain random walk scenarios.
 
 ## Overview
@@ -19,10 +20,21 @@ The key mathematical insight is that for a walk starting d steps away from the o
 The program runs a Monte Carlo simulation to empirically verify this theoretical relationship:
 
 - It tests starting positions from 1 to 9 steps away from the origin
-- For each starting position, it runs 10,000 trial walks
+- For each starting position, it runs 100,000 trial walks
 - Each walk is limited to a maximum of 100 steps
 - It counts how many walks return to the origin ("halt") for each starting position
 - It compares the empirical results with the theoretical prediction
+
+## Optimization
+
+The simulation includes an optimization to improve performance:
+
+- A `POSITION_LIMIT` constant (set to 20 by default) is introduced
+- If a walk reaches or exceeds this limit, it's considered extremely unlikely to return to the origin
+- Such walks are terminated early, saving computational time
+- This allows for more trials to be run, increasing overall accuracy
+
+This optimization trades off some accuracy for walks that might return from beyond the position limit, but it allows for a much larger number of trials in the same computational time, generally improving the overall accuracy of the results.
 
 ## Running the Simulation
 
@@ -66,4 +78,10 @@ This connection showcases how fundamental mathematical constants like φ can eme
 
 ## Further Exploration
 
-You can modify the `NTRIALS` and `STEPLIMIT` constants in the code to experiment with different simulation parameters. Increasing `NTRIALS` will give more accurate results but will take longer to run. Adjusting `STEPLIMIT` can help you explore how the walk behaves over different time scales.
+You can modify the `NTRIALS`, `STEPLIMIT`, and `POSITION_LIMIT` constants in the code to experiment with different simulation parameters:
+
+- Increasing `NTRIALS` will give more accurate results but will take longer to run.
+- Adjusting `STEPLIMIT` can help you explore how the walk behaves over different time scales.
+- Changing `POSITION_LIMIT` allows you to fine-tune the trade-off between speed and accuracy. A lower limit will run faster but may miss some rare events where a walk returns from far away. A higher limit will be more accurate but slower.
+
+Try different values for these parameters and observe how they affect the accuracy of the results compared to the theoretical prediction.
